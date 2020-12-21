@@ -1,31 +1,19 @@
 class Dom {
   constructor(selector) {
     // #app если селектор строка
-    this.$el = typeof selector ==='string' 
+    this.$el = typeof selector ==='string'
     ? document.querySelector(selector)
     // event.target если селектор - дом-нода
     : selector;
   }
 
   html(html) {
-    if (typeof html === 'string') { //если мы передали значение в html(), то он работает как сеттер
+    if (typeof html === 'string') {
       this.$el.innerHTML = html;
       return this;
     }
     // иначе html() работает как геттер
-    return this.$el.outerHTML.trim(); //trim() удаляет лишние пробелы в начале и конце строки
-  }
-
-  text(text) {
-    if (typeof text !== 'undefined') {
-      this.$el.textContent = text
-      return this
-    }
-    if (this.$el.tagName.toLowerCase() === 'input') {
-      return this.$el.value.trim()
-    }
-    return this.$el.textContent.trim()
-    
+    return this.$el.outerHTML.trim();
   }
 
   clear() {
@@ -33,8 +21,19 @@ class Dom {
     return this;
   }
 
+  text(text) {
+    if (typeof text !== 'undefined') {
+      this.$el.textContent = text;
+      return this;
+    }
+    if (this.$el.tagName.toLowerCase() === 'input') {
+      return this.$el.value.trim();
+    }
+    return this.$el.textContent.trim();
+  }
+
   on(eventType, callback) {
-    this.$el.addEventListener(eventType, callback)
+    this.$el.addEventListener(eventType, callback);
   }
 
   off(eventType, callback) {
@@ -62,7 +61,7 @@ class Dom {
   }
 
   getCoords() {
-    return this.$el.getBoundingClientRect()
+    return this.$el.getBoundingClientRect();
   }
 
   find(selector) {
@@ -92,17 +91,17 @@ class Dom {
       return {
         row: +parsed[0],
         col: +parsed[1]
-      }
+      };
     }
     return this.data.id;
   }
 
   attr(name, value) {
     if (value) {
-      this.$el.setAttribute(name, value)
-      return this
+      this.$el.setAttribute(name, value);
+      return this;
     }
-    return this.$el.getAttribute(name)
+    return this.$el.getAttribute(name);
   }
 
   focus() {
@@ -112,15 +111,14 @@ class Dom {
 
   addClass(className) {
     this.$el.classList.add(className);
-    return this
+    return this;
   }
 
   removeClass(className) {
     this.$el.classList.remove(className);
-    return this
+    return this;
   }
 }
-
 
 
 export function $(selector) {
@@ -128,9 +126,10 @@ export function $(selector) {
 }
 
 $.create = (tagName, classes = '') => {
-  const el = document.createElement(tagName)
+  const el = document.createElement(tagName);
   if (classes) {
-    el.classList.add(classes)
+    el.classList.add(classes);
   }
   return $(el);
-}
+};
+

@@ -34,11 +34,11 @@ export class Table extends ExcelComponent {
 
 
     this.$on('formula:input', value => {
-      console.log(value)
+      console.log(value);
       this.selection.current
           .attr('data-value', value)
-          .text(parse(value))
-      this.updateTextInStore(value)
+          .text(parse(value));
+      this.updateTextInStore(value);
     });
 
     this.$on('formula:done', () => {
@@ -50,7 +50,7 @@ export class Table extends ExcelComponent {
       this.$dispatch(actions.applyStyle({
         value,
         ids: this.selection.selectedIds
-      }))
+      }));
     });
   }
 
@@ -65,11 +65,10 @@ export class Table extends ExcelComponent {
   async resizeTable(event) {
     try {
       const data = await resizeHandler(this.$root, event);
-      this.$dispatch(actions.tableResize(data))
-    } catch(e) {
-      console.warn('Resize error', e.message)
+      this.$dispatch(actions.tableResize(data));
+    } catch (e) {
+      console.warn('Resize error', e.message);
     }
-
   }
 
   onMousedown(event) {
@@ -81,16 +80,21 @@ export class Table extends ExcelComponent {
         const $cells = matrix($target, this.selection.current)
             .map(id => this.$root.find(`[data-id="${id}"]`));
         this.selection.selectGroup($cells);
-    
       } else {
         this.selectCell($target);
       }
-      
-    }  
+    }
   }
 
   onKeydown(event) {
-    const keys = ['Enter', 'Tab', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
+    const keys = [
+      'Enter',
+      'Tab',
+      'ArrowUp',
+      'ArrowDown',
+      'ArrowLeft',
+      'ArrowRight'
+    ];
     const {key} = event;
 
     if (keys.includes(key) && !event.shiftKey) {
@@ -99,21 +103,17 @@ export class Table extends ExcelComponent {
       const $next = this.$root.find(nextSelector(key, id));
       this.selectCell($next);
     }
-    
   }
 
   updateTextInStore(value) {
     this.$dispatch(actions.changeText({
       id: this.selection.current.id(),
       value
-    }))
+    }));
   }
 
   onInput(event) {
-    this.updateTextInStore($(event.target).text())
+    this.updateTextInStore($(event.target).text());
   }
-
 }
-
-
 
