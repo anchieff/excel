@@ -21,17 +21,17 @@ export class Formula extends ExcelComponent {
   }
 
   init() {
-    super.init()
+    super.init();
 
     this.$formula = this.$root.find('#formula');
 
     this.$on('table:select', $cell => {
-      this.$formula.text($cell.data.value)
+      this.$formula.text($cell.data.value);
     });
   }
 
   storeChanged({curretnText}) {
-    this.$formula.text(curretnText)
+    this.$formula.text(curretnText);
   }
 
   onInput(event) {
@@ -41,10 +41,8 @@ export class Formula extends ExcelComponent {
   onKeydown(event) {
     const keys = ['Enter', 'Tab'];
     if (keys.includes(event.key)) {
-      event.preventDefault()
-      this.$emit('formula:done')
+      event.preventDefault();
+      this.$emit('formula:done');
     }
   }
-
-
 }

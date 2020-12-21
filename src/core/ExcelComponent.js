@@ -9,33 +9,32 @@ export class ExcelComponent extends DomListener {
     this.store = options.store;
     this.unsubscribers = [];
 
-    
 
-    this.prepare()
+    this.prepare();
   }
 
   // Настраиваем наш компонент до init
   prepare() {
-    
+
   }
   // Возвращает шаблон компонента
-  toHTML () {
+  toHTML() {
     return '';
   }
 
   // Уведомляем слушателей о событии event
   $emit(event, ...args) {
-    this.emitter.emit(event, ...args)
+    this.emitter.emit(event, ...args);
   }
 
   // Подписываемся на событие event
   $on(event, fn) {
     const unsub = this.emitter.subscribe(event, fn);
-    this.unsubscribers.push(unsub)
+    this.unsubscribers.push(unsub);
   }
 
   $dispatch(action) {
-    this.store.dispatch(action)
+    this.store.dispatch(action);
   }
 
   // Сюда приходят только те изменения, на которые мы подписались

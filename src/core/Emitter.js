@@ -1,15 +1,15 @@
 export class Emitter {
   constructor() {
-    this.listeners = {}
+    this.listeners = {};
   }
 
   // Уведомляем слушателей, если они есть
   emit(event, ...args) {
-    if(!Array.isArray(this.listeners[event])) {
+    if (!Array.isArray(this.listeners[event])) {
       return false;
     }
     this.listeners[event].forEach(listener => {
-      listener(...args)
+      listener(...args);
     });
     return true;
   }
@@ -20,8 +20,8 @@ export class Emitter {
     this.listeners[event] = this.listeners[event] || [];
     this.listeners[event].push(fn);
     return () => {
-      this.listeners[event] =
-        this.listeners[event].filter(listener => listener !== fn)
-    }
+      this.listeners[event]
+      = this.listeners[event].filter(listener => listener !== fn);
+    };
   }
 }

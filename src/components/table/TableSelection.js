@@ -3,7 +3,7 @@ export class TableSelection {
 
   constructor() {
     this.group = [];
-    this.current = null
+    this.current = null;
   }
 
   select($el) {
@@ -11,7 +11,6 @@ export class TableSelection {
     $el.focus().addClass(TableSelection.className);
     this.group.push($el);
     this.current = $el;
-    
   }
 
   clear() {
@@ -20,7 +19,7 @@ export class TableSelection {
   }
 
   get selectedIds() {
-    return this.group.map($el => $el.id())
+    return this.group.map($el => $el.id());
   }
 
   selectGroup($group = []) {
@@ -30,6 +29,6 @@ export class TableSelection {
   }
 
   applyStyle(style) {
-    this.group.forEach($el => $el.css(style))
+    this.group.forEach($el => $el.css(style));
   }
 }

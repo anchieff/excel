@@ -1,14 +1,31 @@
 {
-  "parcer": "babel-eslint",
+  "parser": "babel-eslint",
   "env": {
     "es6": true,
     "browser": true,
     "node": true
   },
   "rules": {
-
+    "linebreak-style": [
+      "error",
+      "windows"
+    ],
+    "arrow-parens": ["error", "as-needed"],
+    "comma-dangle": ["error", "never"],
+    "quotes": "off",
+    "require-jsdoc": "off",
+    "object-curly-spacing":"off",
+    "indent": "off",
+    "no-tabs": "off",
+    "operator-linebreak": ["error", "before"],
+    "no-invalid-this":"off",
+    "no-console":"off"
   },
   "extends": ["eslint:recommended", "google"],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+}
   
 
 }
